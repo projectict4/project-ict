@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title></title>
+        <link href="project.css" type="text/css" rel="stylesheet" media="screen">
+	</head>
+	<body class="alles">
+        <div class="hoofdpagebox">
+		<h1 class="titel">Categories</h1>
+		<select id="startlanguage"name="startlanguage">
+			<option value="A">English</option>
+			<option value="B">Finnish</option>
+		</select>
+		
+		<select id="resultlanguage"name="resultlanguage">
+			<option value="A">Finnish</option>
+			<option value="B">English</option>
+		</select>
+		
+		<form name="translate" method="get" action="translate.php">
+        <p id="translatetext">
+		Typ phrase to translate here:
+		<input id="phrasebox"name="phrase" type="text" size="38" />
+		</p>			
+			<input id="translateknop"type="submit" name="translate" value="Translate" />
+		</form>
+		<br />
+		<br />
+		<br />
+		<br />
+		<br />
+		<form  class="back"name="back" method="get" action="ingelogd.html">
+			<input class="backknop" type="submit" name="back" value="Back" />
+		</form>	
+		
+        </div>
+	</body>
+</html>
