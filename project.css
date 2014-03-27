@@ -1,13 +1,13 @@
 .hoofdpagebox
 {
-    height:500px;
+    height:360px;
     width:300px;
     position:absolute;
-    left:100px;
+    left:85px;
     border-style:solid;
 	border-width: 3px;
     border-color:lightblue;
-    background-color:white;
+    background-color:midnightblue;
     border-radius:15px;
 }
 .alles
@@ -16,7 +16,7 @@
 }
 .titel
 {
-    color:midnightblue;
+    color:lightblue;
     text-align:center;
 }
 .logintext
@@ -24,29 +24,26 @@
     position:relative;
     left:65px;
     font-weight: bold;
-    color: red;
-}
-.fblogin
-{
-	position:relative;
-	left:115px;
+    color: white;
 }
 .registertext
 {
     position:relative;
     left:40px;
     font-weight: bold;
-    color: red;
+    color: white;
 }
 #loginvak
 {
     position:relative;
     left:35px;
+    border-radius:5px;
 }
 #pasvak
 {
     position:relative;
     left:10px;
+    border-radius:5px;
 }
 #loginknop
 {
@@ -70,21 +67,25 @@
 {
     position:relative;
     left:42px;
+    border-radius:5px;
 }
 #pasvakregister
 {
     position:relative;
     left:17px;
+    border-radius:5px;
 }
 #firstnameregister
 {
     position:relative;
     left:5px;
+    border-radius:5px;
 }
 #lastnameregister
 {
     position:relative;
     left:6px;
+    border-radius:5px;
 }
 #registreerknop
 {
@@ -158,4 +159,64 @@
 {
     position:relative;
     left:35px
+}
+#categorieknop
+{
+	position:relative;
+	left:110px;
+	font-weight:bold;
+    border-radius:5px;
+}
+#optionknop
+{
+	position:relative;
+	left:119px;
+	font-weight:bold;
+    border-radius:5px;
+}
+#exitknop
+{
+	position:relative;
+	left:130px;
+	font-weight:bold;
+    border-radius:5px;
+}
+#resultlanguage
+{
+	position:relative;
+	left:105px;
+	font-weight:bold;
+	border-radius:5px;
+}
+#startlanguage
+{
+	position:relative;
+	left:40px;
+	font-weight:bold;
+	border-radius:5px;
+}
+#translatetext
+{
+	color:white;
+	font-weight:bold;
+	position:relative;
+	left:15px;
+}
+#phrasebox
+{
+	border-radius:5px;
+}
+.categorieknoppen
+{
+	position:relative;
+	left:110px;
+	font-weight:bold;
+    border-radius:5px;
+}
+.backknop
+{
+	position:relative;
+	left:10px;
+	font-weight:bold;
+    border-radius:5px;
 }

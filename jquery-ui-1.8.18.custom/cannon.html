@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
+
+
+<input type="button" value="Replay Game" onClick="window.location.reload()">
+<script type="text/javascript">
+
+hoek = prompt('angle');
+v = prompt('speed best vanaf 5 tot 30');
+
+var ctx;
+var x = 0;
+var y= 0;
+var delta = 0.02; // het tijdsinterval dat elke frame verrekend wordt
+tijd = 0.0;
+//v = 10;
+//hoek = 80;
+var g = 9.81;// valversnelling 9.81m/s²
+var rectx =600;
+var recty =-300;
+var rectmovement = 0;
+
+$(document).ready(function()
+				{
+				var canvas= document.getElementById('myCanvas');
+				ctx = canvas.getContext('2d');
+				ctx.translate(0,500);		
+				Animate();
+				});
+
+
+function Animate()
+{
+	//CLEAR
+	ctx.clearRect(-500,-500,50000,50000);
+
+	//UPDATE
+//alert("test")
+if ((((x-rectx)<100)&&((x-rectx)>0)) && (((y-recty)<100)&&((y-recty)>0)))
+	{
+		rectmovement = 2;
+	}
+	recty = recty + rectmovement;
+	x= x+(v* Math.cos((Math.PI*hoek/180))*tijd);
+	y = y- (v*Math.sin((Math.PI*hoek/180))*tijd-0.5*g*tijd*tijd );
+
+$("#debug").text(y);
+	//DRAW
+	
+	ctx.fillRect(0,0,50,50); // rechthoek tekenen
+	ctx.fillRect(600,recty,30,30); // Doelwit
+	ctx.beginPath();
+	ctx.arc(x,y,20,0,2*Math.PI,false);
+	ctx.fillStyle="#990000";
+	ctx.strokeStyle ="#000000";
+	ctx.stroke();
+	ctx.fill();
+	
+	tijd = tijd + delta;
+	
+	setTimeout(Animate,33);
+}
+
+
+</script>
+
+
+</head>
+<body onLoad="init();">
+  <canvas id="myCanvas" width="5000" height="5000" > </canvas>
+  <div id="debug"></div>
+</body>
+
+</html>
