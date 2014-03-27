@@ -1,11 +1,25 @@
 <?php
+
+	$mysql_host = 'http://ec2-54-229-159-242.eu-west-1.compute.amazonaws.com'
+	$mysql_user = 'root';
+	$mysql_password = 'phrase';
+	$mysql_db = 'users';
+	
+	if(mysql_connect($mysql_host,$mysql_user,$mysql_password)&&mysql_select_db(mysql_db))
+	{
+	
+	}
+	else
+	{
+	die(mysql_error());
+	}
+
 		// Variabelen de waarde geven die ingevuld word
 		// om met aan te loggen
 		$log = $_GET["login"];
 		$pas = $_GET["paswoord"];
 		
-		//check xml
-		$file = simplexml_load_file('gebruikers.xml');
+		
 		
 		$bool=false;
 		// we gaan door heel de xml file, elke gebruiker krijgt
@@ -17,15 +31,18 @@
 			// wel geregistreerd is
 			if($log == $item->naam && $pas == $item->paswoord)
 			{
-				session_start();
+				/*session_start();
 				$_SESSION["user"] = $_GET["login"];
 				header("location:ingelogd.html");
-				$bool=true;
+				$bool=true;*/
+				
+				echo 'ingelogd!';
 			}			
 		}
 
 		if($bool == false)
 			{
-				header("location:hoofdpagemetalert.html");
+				/*header("location:hoofdpagemetalert.html");*/
+				echo 'inloggen mislukt!';
 			}
 ?>
