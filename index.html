@@ -22,6 +22,22 @@
 		
     }
 	*/
+        $(document).ready(function () {
+            $('#loginbtn').click(function () {
+                var loginUser = $('#logintxt').val();
+                var passwordUser = $('#pastxt').val();
+
+                $.ajax({
+                    url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/checkusers.php',
+                    data: { log: loginUser, pas: passwordUser },
+                    success: function (data) { $('#testText').text(data.text); },
+                    error: function () { alert("Error"); },
+                    dataType: "jsonp",
+                    //type:"get"
+                });
+               
+            });
+        });
 	</script>
 	</head>
 	<body>
@@ -79,7 +95,6 @@
 			<!-- Content    -->
 			<div data-role="content">
 				<h3>Content</h3>				
-				<form name="login" action="javascript:process()">
 					<p class="logintext">
 						Login
 						<input id="logintxt"name="login" type="text" size="10" />
@@ -90,8 +105,7 @@
 						<input id="pastxt"name="paswoord" type="password" size="10" />
 					</p>
 			<br />
-						<input id="loginbtn"type="submit" name="Login" value="Login" />
-				</form>	
+						<input id="loginbtn"type="submit" name="Login" value="Login" />	
 		
 				<form  class="registertext"name="registreren" method="get" action="registratieformulier.html">
 					Click here to sign up:

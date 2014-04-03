@@ -32,7 +32,9 @@
 					{
 						$user_id = mysql_result($query_run,0,'id');
 						//$_SESSION['user_id']=$user_id;
-						echo 'user: '. $user_id . ' connected!!!';
+
+						$jsonstring = json_encode('user: '. $user_id . ' connected!!!');
+						echo $_GET['callback'] . '(' . "{'text' : $jsonstring}" . ')';
 					}
 				}
 			}
