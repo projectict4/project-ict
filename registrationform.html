@@ -1,36 +1,62 @@
 <html>
-	<head>
+    <head>
 
-	    <title></title>
+        <title></title>
         <link href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" type="text/css" rel="stylesheet" media="screen" />
         <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>	
-	</head>
-	<body class="alles">
-        <div class="hoofdpagebox">
-		<h1 class="titel">Registration</h1>
-		<form name="zendNaam" method="get" action="registratie.php">
-        <p class="logintext">
-		First Name
-			<input id="firstnameregister"name="naam" type="text" size="10" />
-		</p>
-        <p class="logintext">
-		Last Name
-			<input id="lastnameregister"name="voornaam" type="text" size="10" />
-		</p>
-        <p class="logintext">
-		Login
-			<input id="loginvakregister"name="login" type="text" size="10" />
-		</p>
-        <p class="logintext">
-		Password
-			<input id="pasvakregister"name="paswoord" type="password" size="10" />
-		</p>
-			<input id="registreerknopregister"type="submit" name="registreer" value="Register" />
-		</form>
-		<form name="registreren" method="get" action="index.html">
-			<input id="homeknop"type="submit" name="home" value="Home" />
-		</form>
-            </div>
-	</body>
+        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+        
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#registrerbtn').click(function () {
+                    var firstname = $('#firstname').val();
+                    var surename = $('#surename').val();
+                    var username = $('#username').val();
+                    var password = $('#password').val();
+                    var password2 = $('#password2').val();
+
+                    $.ajax({
+                        url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/registration.php',
+                        data: { firstname: firstname, surename: surename, username: username, password: password, password2: password2 },
+                        success: function (data) { $('#testText').text(data.text); },
+                        error: function () { alert("Error"); },
+                        dataType: "jsonp",
+                        //type:"get"
+                    });
+                });
+             });
+        </Script>
+            </head>
+            <body class="alles">
+                <div class="hoofdpagebox">
+                    <h1 class="titel">Registration</h1>               
+                        <p class="logintext">
+                            First Name
+                            <input id="firstname" name="firstname" type="text" size="10" />
+                        </p>
+                        <p class="logintext">
+                            Last Name
+                            <input id="surename" name="surename" type="text" size="10" />
+                        </p>
+                        <p class="logintext">
+                            username
+                            <input id="username" name="username" type="text" size="10" />
+                        </p>
+                        <p class="logintext">
+                            Password
+                            <input id="password" name="password" type="password" size="10" />
+                        </p>
+                        <p class="logintext">
+                            confirm Password
+                            <input id="password2" name="password2" type="password" size="10" />
+                        </p>
+                        <input id="registrerbtn" type="submit" name="registreer" value="Register" />
+                    <form name="registreren" method="get" action="index.html">
+                        <input id="homeknop"type="submit" name="home" value="Home" />
+                    </form>
+                </div>
+                <!-- test stuff -->
+                <div id="testText"></div>
+                <!-- /test stuff -->
+            </body>
 </html>
