@@ -9,6 +9,9 @@
         
         <script type="text/javascript">
             $(document).ready(function () {
+
+                $.mobile.allowCrossDomainPages = true;
+
                 $('#registrerbtn').click(function () {
                     var firstname = $('#firstname').val();
                     var surename = $('#surename').val();
@@ -28,7 +31,7 @@
 
                 $(function () {
                     $("#homeBtn").click(function () {
-                        $.mobile.changePage("index.html");
+                        $.mobile.changePage("index.html", { allowSamePageTransition: true, reloadPage: false, changeHash: true, transition: "slide" });
                     });
                 });
 
@@ -65,8 +68,8 @@
                             <input id="password2" name="password2" type="password" size="10" />
                         </p>
                         <input id="registrerbtn" type="submit" name="registreer" value="Register" />
-                        <form name="registreren" method="get" action="index.html">
-                            <input id="homeBtn" type="submit" name="home" value="Home" />
+                        <form name="registreren">
+                            <input id="homeBtn" data-role="button" type="submit" name="home" value="Home" />
                         </form>
                     </div>  
                     <!-- footer -->

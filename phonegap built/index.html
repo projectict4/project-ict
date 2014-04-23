@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
-	<title>&nbsp;</title>
+	
 	<head>
+        <title>&nbsp;</title>
 	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" type="text/css" rel="stylesheet" media="screen" />
@@ -21,6 +22,9 @@
     }
 	*/
         $(document).ready(function () {
+
+            $.mobile.allowCrossDomainPages = true;
+
             $('#loginbtn').click(function () {
                 var loginUser = $('#logintxt').val();
                 var passwordUser = $('#pastxt').val();
@@ -28,7 +32,7 @@
                 $.ajax({
                     url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/checkusers.php',
                     data: { log: loginUser, pas: passwordUser },
-                    success: function (data) { $('#testText').text(data.text); },
+                    success: function (data) { /*$('#testText').text(data.text);*/ alert(data.text); },
                     error: function () { alert("Error"); },
                     dataType: "jsonp",
                     //type:"get"
@@ -38,9 +42,10 @@
 
             $(function () {
                 $("#registerbtn").click(function () {
-                    $.mobile.changePage("registrationform.html");
+                    $.mobile.changePage("registrationform.html", { allowSamePageTransition: true, reloadPage: false, changeHash: true, transition: "slide" });
                 });
             });
+
         });
 	</script>
 	</head>
