@@ -22,7 +22,7 @@
                     $.ajax({
                         url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/registration.php',
                         data: { firstname: firstname, surename: surename, username: username, password: password, password2: password2 },
-                        success: function (data) { $('#testText').text(data.text); },
+                        success: function (data) { /*$('#testText').text(data.text);*/alert(data.text); },
                         error: function () { alert("Error"); },
                         dataType: "jsonp",
                         //type:"get"
@@ -35,11 +35,13 @@
                     });
                 });
 
-             });
+            });
         </Script>
-            </head>
-            <body class="alles">
-                <div data-role="page" id="page2">
+    </head>
+
+
+    <body class="alles">
+                <div data-role="page" id="registrationPage">
                     <!-- Header -->
                     <div data-role="header">
                         <h1 class="titel">registration form</h1>

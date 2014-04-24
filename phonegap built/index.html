@@ -21,9 +21,14 @@
 		
     }
 	*/
+
         $(document).ready(function () {
 
-            $.mobile.allowCrossDomainPages = true;
+            //**********script loginPage****************
+
+            //showLoginPage();
+
+            //$.mobile.allowCrossDomainPages = true;
 
             $('#loginbtn').click(function () {
                 var loginUser = $('#logintxt').val();
@@ -40,13 +45,45 @@
                
             });
 
-            $(function () {
-                $("#registerbtn").click(function () {
-                    $.mobile.changePage("registrationform.html", { allowSamePageTransition: true, reloadPage: false, changeHash: true, transition: "slide" });
+            //$(function () {
+            //    $("#registerbtn").click(function () {
+            //        $.mobile.changePage("#registrationPage"/*, { allowSamePageTransition: true, reloadPage: true, changeHash: true, transition: "slide" }*/);
+            //        //hideLoginPage();
+            //        //showRegistrationPage();
+            //    });
+            //});
+
+            //*************script registrationPage******************
+
+            $('#registrerbtn').click(function () {
+                var firstname = $('#firstname').val();
+                var surename = $('#surename').val();
+                var username = $('#username').val();
+                var password = $('#password').val();
+                var password2 = $('#password2').val();
+
+                $.ajax({
+                    url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/registration.php',
+                    data: { firstname: firstname, surename: surename, username: username, password: password, password2: password2 },
+                    success: function (data) { /*$('#testText').text(data.text);*/ alert(data.text); },
+                    error: function () { alert("Error"); },
+                    dataType: "jsonp",
+                    //type:"get"
                 });
             });
 
+            //$(function () {
+            //    $("#homeBtn").click(function () {
+            //        $.mobile.changePage("#loginPage"/*, { allowSamePageTransition: true, reloadPage: false, changeHash: true, transition: "slide" }*/);
+            //        //showLoginPage();
+            //        //hideRegistrationPage();
+            //    });
+            //});
+
         });
+
+        
+
 	</script>
 	</head>
 	<body>
@@ -94,7 +131,7 @@
 	</script>
 		
 		<!-- Start of first page I -->
-		<div data-role="page" id="page1">
+		<div data-role="page" id="loginPage">
 			<!-- Header -->
 			<div data-role="header">
 				<h1 class="titel">Phrase dictionary</h1>
@@ -116,7 +153,7 @@
 						<input id="loginbtn"type="submit" name="Login" value="Login" />	
 		
 					Click here to sign up:
-                <input id="registerbtn" type="submit" name="registreer" data-role="button" value="Sign up" />	
+                <input id="registerbtn" type="submit" name="registreer" data-role="button" value="Sign up" onclick="location.href = '#registrationPage'" />
 			</div>
 			<!-- /content -->	
 			<!-- test stuff -->
@@ -133,5 +170,47 @@
 			<!-- /footer -->
 		</div>
 		<!-- /page -->
+
+
+        <!--registrationPage-->
+        <div data-role="page" id="registrationPage">
+            <!-- Header -->
+            <div data-role="header">
+                <h1 class="titel">registration form</h1>
+
+            </div>
+            <!-- /header -->
+            <div data-role="content">
+                <p class="logintext">
+                    First Name
+                    <input id="firstname" name="firstname" type="text" size="10" />
+                </p>
+                <p class="logintext">
+                    Last Name
+                    <input id="surename" name="surename" type="text" size="10" />
+                </p>
+                <p class="logintext">
+                    username
+                    <input id="username" name="username" type="text" size="10" />
+                </p>
+                <p class="logintext">
+                    Password
+                    <input id="password" name="password" type="password" size="10" />
+                </p>
+                <p class="logintext">
+                    confirm Password
+                    <input id="password2" name="password2" type="password" size="10" />
+                </p>
+                <input id="registrerbtn" type="submit" name="registreer" value="Register" />
+                <input id="homeBtn" data-role="button" type="submit" name="home" value="Home" onclick="location.href = '#loginPage'" />
+            </div>
+            <!-- footer -->
+            <div data-role="footer">
+                <h4>&copy; 2014</h4>
+            </div>
+            <!-- /footer -->
+        </div>
+
+
 	</body>
 </html>
