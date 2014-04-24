@@ -22,6 +22,8 @@
 						if($query_run = mysql_query($query))
 						{
 							echo $_GET['callback'] . '(' . "{'text' : 'Translation added, well done!'}" . ')';
+							
+							$jsonstring = json_encode('translation: '. $cat_id . ' added!!!');
 						}
 						else
 						{

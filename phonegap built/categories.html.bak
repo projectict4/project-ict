@@ -35,7 +35,9 @@
 		
 		<!--vertalingen toevoegen-->
 		<p id="addtranslate">
+		Add your own translation here.
 		<input id="addtransbox" name="addtransbox" type="text" size="38" />
+		Select your language
 		<select id="translanguage" name="translanguage">
 			<option value="A">Finnish</option>
 			<option value="B">English</option>

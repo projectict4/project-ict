@@ -9,6 +9,7 @@
 	
 	if(mysql_connect($mysql_host,$mysql_user,$mysql_password)&& mysql_select_db($mysql_db))
 	{
+		
 		if (isset($_GET['addedtranslation']))
 			$addedtranslation = $_GET['addedtranslation'];
 			
@@ -18,10 +19,12 @@
 					$query_run = mysql_query($query);
 					
 					//deze query ook nog aanpassen
-					$query = "INSERT INTO users VALUES ('','".mysql_real_escape_string($addedtranslation)."')";
+					$query = "INSERT INTO phrase english VALUES ('','".mysql_real_escape_string($addedtranslation)."')";
 						if($query_run = mysql_query($query))
 						{
 							echo $_GET['callback'] . '(' . "{'text' : 'Translation added, well done!'}" . ')';
+							
+							$jsonstring = json_encode('translation: '. $cat_id . ' added!!!');
 						}
 						else
 						{

@@ -8,7 +8,7 @@
             $(document).ready(function () {
 			 $('#addtransbtn').click(function () {
 				var addedtranslation = $('#addtransbox').val();
-				
+				alert();
 				$.ajax({
                         url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/registration.php',
 						data: {addedtranslation: addedtranslation},
@@ -43,7 +43,7 @@
 			<option value="B">English</option>
 		</select>
 		
-		<input id="addtransbutn" name="addtransbtn" type="submit" size="10"/>
+		<input id="addtransbutn" name="addtransbtn" type="submit" />
 		</p>
 		
 		<form name="translate" method="get" action="translate.php">
