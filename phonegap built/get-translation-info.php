@@ -13,10 +13,15 @@
 	{
 		// Collects phrases in table phrase english 
 		$data = mysql_query("SELECT phrase FROM `phrase english` WHERE id='1'");
-		$info = mysql_result($data,1,'phrase');
+		$info = mysql_result($data,0,'phrase');
 		//$info = mysql_fetch_array( $data );
-		echo $_GET['callback'] . '(' . "{'text' : $info}" . ')';
+		//$infoString = (string)$info;
+
+		//echo $_GET['callback'] . '(' . "{'text' : $infoString}" . ')';
 		//echo $_GET['callback'] . '(' . "{'text' : 'test'}" . ')';
+
+		$jsonstring = json_encode(''. $info . '');
+		echo $_GET['callback'] . '(' . "{'text' : $jsonstring}" . ')';
 	}
 	else
 	{
