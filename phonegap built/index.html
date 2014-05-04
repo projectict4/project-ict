@@ -37,7 +37,16 @@
                 $.ajax({
                     url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/checkusers.php',
                     data: { log: loginUser, pas: passwordUser },
-                    success: function (data) { /*$('#testText').text(data.text);*/ alert(data.text); },
+                    success: function (data)
+                    {
+                        if (data.text == "ok") {
+                            $.mobile.changePage('#loggedIn', { transition: "flip" });
+                            alert('login succesfull');
+                        }
+                        else {
+                            alert(data.text);
+                        }
+                    },
                     error: function () { alert("Error"); },
                     dataType: "jsonp",
                     //type:"get"					
@@ -67,7 +76,7 @@
                 $.ajax({
                     url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/registration.php',
                     data: { firstname: firstname, surename: surename, username: username, password: password, password2: password2 },
-                    success: function (data) { /*$('#testText').text(data.text);*/ alert(data.text); },
+                    success: function (data) {alert(data.text);},
                     error: function () { alert("Error"); },
                     dataType: "jsonp",
                     //type:"get"
@@ -216,6 +225,102 @@
             <!-- /footer -->
         </div>
 
+        <!--logged in page-->
+        <div data-role="page" id="loggedIn">
+            <!-- Header -->
+            <div data-role="header">
+                <h1 class="titel">phrase dictionary</h1>
+
+            </div>
+            <!-- /header -->
+            <div data-role="content">
+                <input id="categorieknop" type="submit" name="categorie" value="Categories" data-role="button" onclick="location.href = '#categories'" />
+                    <br />
+                    <br />
+                    <form name="options" method="get" action="options.html">
+                        <input id="optionknop" type="submit" name="options" value="Options" />
+                    </form>
+                    <br />
+                    <br />
+                    <form name="exit" method="get" action="hoofdpage.html">
+                        <input id="exitknop" type="submit" name="exit" value="Exit" />
+                    </form>
+            </div>
+            <!-- footer -->
+            <div data-role="footer">
+                <h4>&copy; 2014</h4>
+            </div>
+            <!-- /footer -->
+        </div>
+
+        <!--categories-->
+        <div data-role="page" id="categories">
+            <!-- Header -->
+            <div data-role="header">
+                <h1 class="titel">phrase dictionary</h1>
+
+            </div>
+            <!-- /header -->
+            <div data-role="content">
+                    <h1 class="titel">Categories</h1>
+
+                    <select id="startlanguage" name="startlanguage">
+                        <option value="A">English</option>
+                        <option value="B">Finnish</option>
+                    </select>
+
+                    <select id="resultlanguage" name="resultlanguage">
+                        <option value="A">Finnish</option>
+                        <option value="B">English</option>
+                    </select>
+
+                    <!--vertalingen toevoegen-->
+                    <p id="addtranslate">
+                        Add your own translation here.
+                        <input id="addtransbox" name="addtransbox" type="text" size="38" />
+                        Select your language
+                        <select id="translanguage" name="translanguage">
+                            <option value="A">Finnish</option>
+                            <option value="B">English</option>
+                        </select>
+
+                        <input id="addtransbutn" name="addtransbtn" type="submit" />
+                    </p>
+
+                    <form name="translate" method="get" action="translate.php">
+                        <p id="translatetext">
+                            Search categories:
+                            <input id="phrasebox" name="phrase" type="text" size="38" />
+                        </p>
+                        <input class="categorieknoppen" type="submit" name="translate" value="Translate" />
+                        <br />
+                        <input class="categorieknoppen" type="submit" name="traveling" value="Traveling" />
+                        <br />
+                        <input class="categorieknoppen" type="submit" name="directions" value="Directions" />
+                        <br />
+                        <input class="categorieknoppen" type="submit" name="orderingandshopping" value="Ordering and shopping" />
+                        <br />
+                        <input class="categorieknoppen" type="submit" name="thankingandapologicing" value="Thanking and apologizinging" />
+                        <br />
+                        <input class="categorieknoppen" type="submit" name="datesandtimes" value="Dates and times" />
+                        <br />
+                        <input class="categorieknoppen" type="submit" name="numerals" value="Numerals" />
+                    </form>
+
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+
+                <input class="backknop" type="submit" name="back" value="Back" data-role="button" onclick="location.href = '#loggedIn'" />
+            </div>
+            <!-- footer -->
+            <div data-role="footer">
+                <h4>&copy; 2014</h4>
+            </div>
+            <!-- /footer -->
+        </div>
 
 	</body>
 </html>

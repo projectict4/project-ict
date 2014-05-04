@@ -33,8 +33,8 @@
 						$user_id = mysql_result($query_run,0,'id');
 						//$_SESSION['user_id']=$user_id;
 
-						$jsonstring = json_encode('user: '. $user_id . ' connected!!!');
-						echo $_GET['callback'] . '(' . "{'text' : $jsonstring}" . ')';
+						//$jsonstring = json_encode('user: '. $user_id . ' connected!!!');
+						echo $_GET['callback'] . '(' . "{'text' : 'ok'}" . ')';
 					}
 				}
 			}
