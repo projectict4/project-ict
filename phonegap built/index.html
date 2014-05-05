@@ -41,7 +41,7 @@
                     {
                         if (data.text == "ok") {
                             $.mobile.changePage('#loggedIn', { transition: "flip" });
-                            alert('login succesfull');
+                            //alert('login succesfull');
                         }
                         else {
                             alert(data.text);
@@ -91,9 +91,82 @@
             //    });
             //});
 
+            //**********************categories page***************************
+
+            var langue1 = 'english';
+            var langue2 = 'finnish';
+            var cat;
+
+            $("#startlanguage").change(function () {
+                //alert("Handler for .change() called.");
+
+                if ($("#startlanguage").val() == 'dutch1') {
+                    //alert("dutch1 selected!");
+                    langue1 = 'dutch';
+                }
+
+                if ($("#startlanguage").val() == 'english1') {
+                    //alert("english1 selected!");
+                    langue1 = 'english';
+                }
+
+                if ($("#startlanguage").val() == 'finnish1') {
+                    //alert("finnish1 selected!");
+                    langue1 = 'finnish';
+                }
+
+                //alert(langue1);
+            });
+
+            $("#resultlanguage").change(function () {
+                //alert("Handler for .change() called.");
+
+                if ($("#resultlanguage").val() == 'dutch2') {
+                    //alert("dutch2 selected!");
+                    langue2 = 'dutch';
+                }
+
+                if ($("#resultlanguage").val() == 'english2') {
+                    //alert("english2 selected!");
+                    langue2 = 'english';
+                }
+
+                if ($("#resultlanguage").val() == 'finnish2') {
+                    //alert("finnish2 selected!");
+                    langue2 = 'finnish';
+                }
+
+                //alert(langue2);
+            });
+
+            $('.catbtn').click(function () {
+                if (langue1 == langue2) {
+                    alert("select two different languages.");
+                }
+                else
+                {
+                    cat = $(this).attr("name");
+                    //alert(cat);
+
+                    $.ajax({
+                        url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/get-translation-info.php',
+                        data: { cat: cat, language1: language1, language2: language2 },
+                        success: function (data) {
+                                alert(data.text);
+                        },
+                        error: function () { alert("Error"); },
+                        dataType: "jsonp",
+                        //type:"get"					
+
+
+                    });
+                }
+
+            });
+
         });
 
-        
+
 
 	</script>
 	</head>
@@ -173,9 +246,6 @@
 			<div data-role="fblogin">
 				<fb:login-button show-faces="false" width="500" max-rows="2"></fb:login-button>
 			</div>
-				
-				<a href="categories.html">testcategories</a>
-
 			
 			<!-- footer -->
 			<div data-role="footer">
@@ -264,15 +334,17 @@
             <div data-role="content">
                     <h1 class="titel">Categories</h1>
 
-                    <select id="startlanguage" name="startlanguage">
-                        <option value="A">English</option>
-                        <option value="B">Finnish</option>
-                    </select>
+                <select id="startlanguage" name="startlanguage" data-native-menu="false">
+                    <option value="english1">English</option>
+                    <option value="finnish1">Finnish</option>
+                    <option value="dutch1">Dutch</option>
+                </select>
 
-                    <select id="resultlanguage" name="resultlanguage">
-                        <option value="A">Finnish</option>
-                        <option value="B">English</option>
-                    </select>
+                <select id="resultlanguage" name="resultlanguage" data-native-menu="false">
+                    <option value="finnish2">Finnish</option>
+                    <option value="english2">English</option>
+                    <option value="dutch2">Dutch</option>
+                </select>
 
                     <!--vertalingen toevoegen-->
                     <p id="addtranslate">
@@ -286,26 +358,24 @@
 
                         <input id="addtransbutn" name="addtransbtn" type="submit" />
                     </p>
-
-                    <form name="translate" method="get" action="translate.php">
+                 
                         <p id="translatetext">
                             Search categories:
                             <input id="phrasebox" name="phrase" type="text" size="38" />
                         </p>
-                        <input class="categorieknoppen" type="submit" name="translate" value="Translate" />
+                        <input class="catbtn" name="translate" value="Translate" />
                         <br />
-                        <input class="categorieknoppen" type="submit" name="traveling" value="Traveling" />
+                <input class="catbtn" data-role="button" type="submit" name="1" value="Traveling" />
                         <br />
-                        <input class="categorieknoppen" type="submit" name="directions" value="Directions" />
+                <input class="catbtn" data-role="button" type="submit" name="2" value="Directions" />
                         <br />
-                        <input class="categorieknoppen" type="submit" name="orderingandshopping" value="Ordering and shopping" />
+                <input class="catbtn" data-role="button" type="submit" name="3" value="Ordering and shopping" />
                         <br />
-                        <input class="categorieknoppen" type="submit" name="thankingandapologicing" value="Thanking and apologizinging" />
+                <input class="catbtn" data-role="button" type="submit" name="4" value="Thanking and apologizinging" />
                         <br />
-                        <input class="categorieknoppen" type="submit" name="datesandtimes" value="Dates and times" />
+                <input class="catbtn" data-role="button" type="submit" name="5" value="Dates and times" />
                         <br />
-                        <input class="categorieknoppen" type="submit" name="numerals" value="Numerals" />
-                    </form>
+                <input class="catbtn" data-role="button" type="submit" name="6" value="Numerals" />
 
                     <br />
                     <br />
@@ -321,6 +391,30 @@
             </div>
             <!-- /footer -->
         </div>
+
+        <!-- page with the sentences-->
+
+        <div data-role="page" id="sentences">
+            <!-- Header -->
+            <div data-role="header">
+                <h1 class="titel">Translation page</h1>
+            </div>
+            <!-- /header -->
+            <div data-role="content">
+                <p class="logintext">
+                    blablablabla
+                </p>
+                <input class="backknop" type="submit" name="back" value="Back" data-role="button" onclick="location.href = '#categories'" />
+            </div>
+            <!-- footer -->
+            <div data-role="footer">
+                <h4>&copy; 2014</h4>
+            </div>
+            <!-- /footer -->
+        </div>
+        <!-- test stuff -->
+        <div id="testText"></div>
+        <!-- /test stuff -->
 
 	</body>
 </html>

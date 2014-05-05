@@ -11,6 +11,10 @@
 
 	if(mysql_connect($mysql_host,$mysql_user,$mysql_password)&& mysql_select_db($mysql_db))
 	{
+		$cat = $_GET['cat'];
+		$language1 = $_GET['language1'];
+		$language2 = $_GET['language2'];
+
 		// Collects phrases in table phrase english 
 		$data = mysql_query("SELECT phrase FROM `phrase english` WHERE id='1'");
 		$info = mysql_result($data,0,'phrase');
@@ -47,6 +51,7 @@
 
 		$jsonstring = json_encode(''. $info . '');
 		echo $_GET['callback'] . '(' . "{'text' : $jsonstring}" . ')';
+		echo $_GET['callback'] . '(' . "{'text' : $language1}" . ')';
 	}
 	else
 	{
