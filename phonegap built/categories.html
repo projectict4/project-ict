@@ -1,83 +1,84 @@
 <html>
-	<head>
-		<title></title>
+    <head>
+
+        <title></title>
         <link href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" type="text/css" rel="stylesheet" media="screen" />
         <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-		  <script type="text/javascript">
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        
+
+        <script type="text/javascript">
             $(document).ready(function () {
-			 $('#addtransbtn').click(function () {
-				var addedtranslation = $('#addtransbox').val();
-				alert();
-				$.ajax({
-                        url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/registration.php',
-						data: {addedtranslation: addedtranslation},
-						success: function (data) { $('#testText').text(data.text); },
+
+                $('#travelingknop').click(function () {
+
+                    $.ajax({
+                        url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/get-translation-info.php',
+                        success: function (data) { alert(data.text); },
                         error: function () { alert("Error"); },
                         dataType: "jsonp",
                         //type:"get"
                     });
-			 });
+                });
+
+                $(function () {
+                    $("#homeBtn").click(function () {
+                        $.mobile.changePage("index.html", { allowSamePageTransition: true, reloadPage: false, changeHash: true, transition: "slide" });
+                    });
+                });
+
             });
-                </script>
-	</head>
-	<body class="alles">
+        </Script>
+
+
+
+
+            </head>
+    <body class="alles">
         <div class="hoofdpagebox">
-		<h1 class="titel">Categories</h1>
+            <h1 class="titel">Categories</h1>
 		
-		<select id="startlanguage"name="startlanguage">
-			<option value="A">English</option>
-			<option value="B">Finnish</option>
-		</select>
+            <select id="startlanguage"name="startlanguage">
+                <option value="A">English</option>
+                <option value="B">Finnish</option>
+            </select>
 		
-		<select id="resultlanguage"name="resultlanguage">
-			<option value="A">Finnish</option>
-			<option value="B">English</option>
-		</select>
+            <select id="resultlanguage"name="resultlanguage">
+                <option value="A">Finnish</option>
+                <option value="B">English</option>
+            </select>
 		
-		<!--vertalingen toevoegen-->
-		<p id="addtranslate">
-		Add your own translation here.
-		<input id="addtransbox" name="addtransbox" type="text" size="38" />
-		Select your language
-		<select id="translanguage" name="translanguage">
-			<option value="A">Finnish</option>
-			<option value="B">English</option>
-		</select>
+            <form name="translate" method="get" action="translate.php">
+                <p id="translatetext">
+                    Typ phrase to translate here:
+                    <input id="phrasebox"name="phrase" type="text" size="38" />
+                </p>
+                <input class="categorieknoppen"type="submit" name="translate" value="Translate" />
+                <br />
+                <input id = "travelingknop"type="submit" name="traveling" value="Traveling" />
+                <br />
+                <input class="categorieknoppen"type="submit" name="directions" value="Directions" />
+                <br />
+                <input class="categorieknoppen"type="submit" name="orderingandshopping" value="Ordering and shopping" />
+                <br />
+                <input class="categorieknoppen"type="submit" name="thankingandapologicing" value="Thanking and apologicing" />
+                <br />
+                <input class="categorieknoppen"type="submit" name="datesandtimes" value="Dates and times" />
+                <br />
+                <input class="categorieknoppen"type="submit" name="numerals" value="Numerals" />
+            </form>
 		
-		<input id="addtransbutn" name="addtransbtn" type="submit" />
-		</p>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
 		
-		<form name="translate" method="get" action="translate.php">
-        <p id="translatetext">
-		Search categories:
-		<input id="phrasebox"name="phrase" type="text" size="38" />
-		</p>
-			<input class="categorieknoppen"type="submit" name="translate" value="Translate" />
-			<br />
-			<input class="categorieknoppen"type="submit" name="traveling" value="Traveling" />
-			<br />
-			<input class="categorieknoppen"type="submit" name="directions" value="Directions" />
-			<br />
-			<input class="categorieknoppen"type="submit" name="orderingandshopping" value="Ordering and shopping" />
-			<br />
-			<input class="categorieknoppen"type="submit" name="thankingandapologicing" value="Thanking and apologizinging" />
-			<br />
-			<input class="categorieknoppen"type="submit" name="datesandtimes" value="Dates and times" />
-			<br />
-			<input class="categorieknoppen"type="submit" name="numerals" value="Numerals" />
-		</form>
-		
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		
-		<form  class="back"name="back" method="get" action="ingelogd.html">
-			<input class="backknop" type="submit" name="back" value="Back" />
-		</form>
+            <form  class="back"name="back" method="get" action="ingelogd.html">
+                <input class="backknop" type="submit" name="back" value="Back" />
+            </form>
 		
         </div>
-	</body>
+    </body>
 </html>
