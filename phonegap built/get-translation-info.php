@@ -51,7 +51,9 @@
 
 		$jsonstring = json_encode(''. $info . '');
 		echo $_GET['callback'] . '(' . "{'text' : $jsonstring}" . ')';
-		echo $_GET['callback'] . '(' . "{'text' : $language1}" . ')';
+
+		//$jsonstring2 = json_encode(''. $language1 . '');
+		//echo $_GET['callback'] . '(' . "{'text' : $jsonstring2}" . ')';
 	}
 	else
 	{

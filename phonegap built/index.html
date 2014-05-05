@@ -93,8 +93,8 @@
 
             //**********************categories page***************************
 
-            var langue1 = 'english';
-            var langue2 = 'finnish';
+            var language1 = 'english';
+            var language2 = 'finnish';
             var cat;
 
             $("#startlanguage").change(function () {
@@ -102,20 +102,20 @@
 
                 if ($("#startlanguage").val() == 'dutch1') {
                     //alert("dutch1 selected!");
-                    langue1 = 'dutch';
+                    language1 = 'dutch';
                 }
 
                 if ($("#startlanguage").val() == 'english1') {
                     //alert("english1 selected!");
-                    langue1 = 'english';
+                    language1 = 'english';
                 }
 
                 if ($("#startlanguage").val() == 'finnish1') {
                     //alert("finnish1 selected!");
-                    langue1 = 'finnish';
+                    language1 = 'finnish';
                 }
 
-                //alert(langue1);
+                //alert(language1);
             });
 
             $("#resultlanguage").change(function () {
@@ -123,24 +123,24 @@
 
                 if ($("#resultlanguage").val() == 'dutch2') {
                     //alert("dutch2 selected!");
-                    langue2 = 'dutch';
+                    language2 = 'dutch';
                 }
 
                 if ($("#resultlanguage").val() == 'english2') {
                     //alert("english2 selected!");
-                    langue2 = 'english';
+                    language2 = 'english';
                 }
 
                 if ($("#resultlanguage").val() == 'finnish2') {
                     //alert("finnish2 selected!");
-                    langue2 = 'finnish';
+                    language2 = 'finnish';
                 }
 
                 //alert(langue2);
             });
 
             $('.catbtn').click(function () {
-                if (langue1 == langue2) {
+                if (language1 == language2) {
                     alert("select two different languages.");
                 }
                 else
