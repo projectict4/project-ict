@@ -93,8 +93,8 @@
 
             //**********************categories page***************************
 
-            var language1 = 'english';
-            var language2 = 'finnish';
+            var language1 = 'phrase english';
+            var language2 = 'phrase finnish';
             var cat;
 
             $("#startlanguage").change(function () {
@@ -102,17 +102,17 @@
 
                 if ($("#startlanguage").val() == 'dutch1') {
                     //alert("dutch1 selected!");
-                    language1 = 'dutch';
+                    language1 = 'phrase dutch';
                 }
 
                 if ($("#startlanguage").val() == 'english1') {
                     //alert("english1 selected!");
-                    language1 = 'english';
+                    language1 = 'phrase english';
                 }
 
                 if ($("#startlanguage").val() == 'finnish1') {
                     //alert("finnish1 selected!");
-                    language1 = 'finnish';
+                    language1 = 'phrase finnish';
                 }
 
                 //alert(language1);
@@ -123,17 +123,17 @@
 
                 if ($("#resultlanguage").val() == 'dutch2') {
                     //alert("dutch2 selected!");
-                    language2 = 'dutch';
+                    language2 = 'phrase dutch';
                 }
 
                 if ($("#resultlanguage").val() == 'english2') {
                     //alert("english2 selected!");
-                    language2 = 'english';
+                    language2 = 'phrase english';
                 }
 
                 if ($("#resultlanguage").val() == 'finnish2') {
                     //alert("finnish2 selected!");
-                    language2 = 'finnish';
+                    language2 = 'phrase finnish';
                 }
 
                 //alert(langue2);
@@ -152,7 +152,7 @@
                         url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/get-translation-info.php',
                         data: { cat: cat, language1: language1, language2: language2 },
                         success: function (data) {
-                                alert(data.text);
+                                alert(data.key1);
                         },
                         error: function () { alert("Error"); },
                         dataType: "jsonp",
