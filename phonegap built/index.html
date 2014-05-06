@@ -152,7 +152,10 @@
                         url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/get-translation-info.php',
                         data: { cat: cat, language1: language1, language2: language2 },
                         success: function (data) {
-                                alert(data.key1);
+                            //alert(data.key1);
+                            for (code in data)
+                            { alert(data[code]); }
+
                         },
                         error: function () { alert("Error"); },
                         dataType: "jsonp",

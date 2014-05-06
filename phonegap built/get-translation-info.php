@@ -68,7 +68,7 @@
 		//$jsonstring2 = json_encode(''. $language1 . '');
 		//echo $_GET['callback'] . '(' . "{'text' : $jsonstring2}" . ')';
 
-
+		$array_result = array_map('utf8_encode',$array_result);
 		$json =  json_encode($array_result);
 		echo $_GET['callback'] . '(' . $json . ')';
 
