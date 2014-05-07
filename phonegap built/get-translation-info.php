@@ -14,14 +14,27 @@
 		$cat = $_GET['cat'];
 		$language1 = $_GET['language1'];
 		$language2 = $_GET['language2'];
-
+		$catId;
 
 
 		// Collects phrases in table phrase english 
 		$data = mysql_query("SELECT phrase FROM `phrase english` WHERE id='1'");
 		$info = mysql_result($data,0,'phrase');
+		
+		if($language1 == 'phrase english')
+		{
+			$catId = 'id eng';
+		}
+		else if($language1 == 'phrase finnish')
+		{
+			$catId = 'id fin';
+		}
+		else
+		{
+			$catId = 'id dutch';
+		}
 
-		$data2 = mysql_query("SELECT phrase FROM `$language1` WHERE id = ANY (SELECT `id eng` FROM `phrase connections` WHERE cat='$cat')");
+		$data2 = mysql_query("SELECT phrase FROM `$language1` WHERE id = ANY (SELECT `$catId` FROM `phrase connections` WHERE cat='$cat')");
 		$total_rows = mysql_num_rows($data2);
 		//$info2 = mysql_result($data2,0,'phrase');
 

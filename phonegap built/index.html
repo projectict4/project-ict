@@ -152,17 +152,37 @@
                         url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/get-translation-info.php',
                         data: { cat: cat, language1: language1, language2: language2 },
                         success: function (data) {
+                            $("#sentencesContent").empty();
                             //alert(data.key1);
                             for (code in data)
-                            { alert(data[code]); }
+                            {
+                                //alert(data[code]);
+                                $('#sentencesContent').append('<div id="feest" data-role="collapsible"><h4>' + data[code] + '</h4><p>Im the collapsible content. By default Im closed, but you can click the header to open me.</p></div>');
+                                //$(document).delegate("#sentencesContent", "pagebeforecreate", function (e) {
+                                //    alert("test");
+                                //    $("#sentencesContent").find('div').attr("data-role", "collapsible");
+                                //});
 
+                                //$('#sentencesContent').each(function () {
+
+                                //    var span = $('<div />', {
+                                //        text: '<h4>' + data[code] + '</h4><p>Im the collapsible content. By default Im closed, but you can click the header to open me.</p>',
+                                //        "data-role": 'collapsible'
+                                //    });
+                                //    $(this).append(span);
+
+                                //});
+                                
+                            }
+                            //$('div').attr("data-role", "collapsible");
+                            //$('#sentencesContent').append('<div data-role="collapsible"><h4>'data[code]'</h4><p>Im the collapsible content. By default Im closed, but you can click the header to open me.</p></div>');
                         },
                         error: function () { alert("Error"); },
                         dataType: "jsonp",
                         //type:"get"					
-
-
                     });
+
+                    $.mobile.changePage('#sentences');
                 }
 
             });
@@ -403,10 +423,10 @@
                 <h1 class="titel">Translation page</h1>
             </div>
             <!-- /header -->
-            <div data-role="content">
-                <p class="logintext">
-                    blablablabla
-                </p>
+            <div data-role="content" >
+                <div id="sentencesContent">
+                    
+                </div>
                 <input class="backknop" type="submit" name="back" value="Back" data-role="button" onclick="location.href = '#categories'" />
             </div>
             <!-- footer -->
