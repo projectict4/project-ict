@@ -187,6 +187,18 @@
 
             });
 
+
+            //************OPTIONS*************
+            $("#changethemeknop").click(function () {
+
+
+                //$('#changethemeknop').attr("data-theme", "c").removeClass("ui-btn-up-e").addClass("ui-btn-up-c");
+                //$("#options").removeClass("ui-body-a"); //remove old them
+                $("#options").addClass("ui-body-e"); //add new them
+
+
+            });
+
         });
 
 
@@ -241,7 +253,7 @@
 		<div data-role="page" id="loginPage">
 			<!-- Header -->
 			<div data-role="header">
-				<h1 class="titel">Phrase dictionary</h1>
+				<h1 class="titel">Phrase Dictionary</h1>
 
 			</div>
 			<!-- /header -->
@@ -283,7 +295,7 @@
         <div data-role="page" id="registrationPage">
             <!-- Header -->
             <div data-role="header">
-                <h1 class="titel">registration form</h1>
+                <h1 class="titel">Registration Form</h1>
 
             </div>
             <!-- /header -->
@@ -308,7 +320,7 @@
                     confirm Password
                     <input id="password2" name="password2" type="password" size="10" />
                 </p>
-                <input id="registrerbtn" type="submit" name="registreer" value="Register" />
+                <input id="registrerbtn" type="submit" name="registreer" value="Register" onclick="location.href = '#loginPage'"/>
                 <input id="homeBtn" data-role="button" type="submit" name="home" value="Home" onclick="location.href = '#loginPage'" />
             </div>
             <!-- footer -->
@@ -322,7 +334,7 @@
         <div data-role="page" id="loggedIn">
             <!-- Header -->
             <div data-role="header">
-                <h1 class="titel">phrase dictionary</h1>
+                <h1 class="titel">Phrase Dictionary</h1>
 
             </div>
             <!-- /header -->
@@ -331,12 +343,12 @@
                     <br />
                     <br />
                     <form name="options" method="get" action="options.html">
-                        <input id="optionknop" type="submit" name="options" value="Options" />
+                        <input id="optionknop" type="submit" name="options" value="Options" onclick="location.href = '#options'" />
                     </form>
                     <br />
                     <br />
                     <form name="exit" method="get" action="hoofdpage.html">
-                        <input id="exitknop" type="submit" name="exit" value="Exit" />
+                        <input id="exitknop" type="submit" name="exit" value="Exit" onclick="location.href = '#loginPage'"/>
                     </form>
             </div>
             <!-- footer -->
@@ -350,7 +362,7 @@
         <div data-role="page" id="categories">
             <!-- Header -->
             <div data-role="header">
-                <h1 class="titel">phrase dictionary</h1>
+                <h1 class="titel">Phrase Dictionary</h1>
 
             </div>
             <!-- /header -->
@@ -420,7 +432,7 @@
         <div data-role="page" id="sentences">
             <!-- Header -->
             <div data-role="header">
-                <h1 class="titel">Translation page</h1>
+                <h1 class="titel">Translations</h1>
             </div>
             <!-- /header -->
             <div data-role="content" >
@@ -439,5 +451,33 @@
         <div id="testText"></div>
         <!-- /test stuff -->
 
+
+        <!-- page with the options-->
+
+        <div data-role="page" id="options">
+            <!-- Header -->
+            <div data-role="header">
+                <h1 class="titel">Phrase Dictionary</h1>
+            </div>
+            <!-- /header -->
+            <div data-role="content">
+                <h1 class="titel">Options</h1>
+                <p>
+                    Change color: 
+                </p>
+                <input class="changethemeknop" type="submit" name="changetheme" value="Change Theme" data-role="button" onclick="location.href = '#options'"/>
+                <input class="changethemeknop2" type="submit" name="changetheme" value="Change Theme" data-role="button"/>
+
+                <input class="backknop" type="submit" name="back" value="Back" data-role="button" onclick="location.href = '#loggedIn'" />
+            </div>
+            <!-- footer -->
+            <div data-role="footer">
+                <h4>&copy; 2014</h4>
+            </div>
+            <!-- /footer -->
+        </div>
+        <!-- test stuff -->
+        <div id="Div2"></div>
+        <!-- /test stuff -->
 	</body>
 </html>
