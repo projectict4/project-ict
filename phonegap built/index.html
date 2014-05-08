@@ -189,13 +189,54 @@
 
 
             //************OPTIONS*************
-            $("#changethemeknop").click(function () {
+            //$("#ctk").click(function () {
+
+            //    //alert("Error");
+
+            //    $(".changeThemePages").removeClass("ui-body-a"); //remove old theme
+            //    $(".changeThemePages").addClass("ui-body-e"); //add new theme
 
 
-                //$('#changethemeknop').attr("data-theme", "c").removeClass("ui-btn-up-e").addClass("ui-btn-up-c");
-                //$("#options").removeClass("ui-body-a"); //remove old them
-                $("#options").addClass("ui-body-e"); //add new them
+            //});
 
+            $("#selectColorTheme").change(function () {
+
+                if ($("#selectColorTheme").val() == 'A') {
+                    
+                    $(".changeThemePages").removeClass("ui-page-e"); //remove old theme
+                    $(".changeThemePages").addClass("ui-page-a"); //add new theme
+                }
+
+                if ($("#selectColorTheme").val() == 'B') {
+                    
+                    $(".changeThemePages").removeClass("ui-page-a"); //remove old theme
+                    $(".changeThemePages").addClass("ui-page-e"); //add new theme
+
+                }
+
+                //<select id="selectColorTheme" name="selectColorTheme" data-native-menu="false">
+                //    <option value="A">Grey</option>
+                //    <option value="B">Yellow</option>
+                //    <option value="C">Woopie</option>
+                //</select>
+
+
+                //alert("Yellow selected!");
+                //$(".changeThemePages").removeClass("ui-body-a"); //remove old theme
+
+                //$(".changeThemePages").addClass("ui-page-b"); //add new theme
+
+                //$(".changeThemePages").removeClass("data-theme", "a"); //remove old theme
+                //$(".changeThemePages").buttonMarkup({ theme: 'b' });
+                //$.mobile.refresh();
+                //$("#options").trigger("updatelayout");
+                //$(".changeThemePages").addClass("data-theme", "e"); //add new theme
+
+                //$(".changeThemePages").attr("data-theme", "b").trigger("mouseout")
+
+                //$('#options').click(function () {
+                //    location.reload();
+                //});
 
             });
 
@@ -250,7 +291,7 @@
 	</script>
 		
 		<!-- Start of first page I -->
-		<div data-role="page" id="loginPage">
+		<div data-role="page" id="loginPage" class="changeThemePages">
 			<!-- Header -->
 			<div data-role="header">
 				<h1 class="titel">Phrase Dictionary</h1>
@@ -292,7 +333,7 @@
 
 
         <!--registrationPage-->
-        <div data-role="page" id="registrationPage">
+        <div data-role="page" id="registrationPage" class="changeThemePages">
             <!-- Header -->
             <div data-role="header">
                 <h1 class="titel">Registration Form</h1>
@@ -331,7 +372,7 @@
         </div>
 
         <!--logged in page-->
-        <div data-role="page" id="loggedIn">
+        <div data-role="page" id="loggedIn" class="changeThemePages">
             <!-- Header -->
             <div data-role="header">
                 <h1 class="titel">Phrase Dictionary</h1>
@@ -358,8 +399,8 @@
             <!-- /footer -->
         </div>
 
-        <!--categories-->
-        <div data-role="page" id="categories">
+        <!--categories Page-->
+        <div data-role="page" id="categories" class="changeThemePages">
             <!-- Header -->
             <div data-role="header">
                 <h1 class="titel">Phrase Dictionary</h1>
@@ -429,7 +470,7 @@
 
         <!-- page with the sentences-->
 
-        <div data-role="page" id="sentences">
+        <div data-role="page" id="sentences" class="changeThemePages">
             <!-- Header -->
             <div data-role="header">
                 <h1 class="titel">Translations</h1>
@@ -454,7 +495,7 @@
 
         <!-- page with the options-->
 
-        <div data-role="page" id="options">
+        <div data-role="page" id="options" class="changeThemePages">
             <!-- Header -->
             <div data-role="header">
                 <h1 class="titel">Phrase Dictionary</h1>
@@ -465,8 +506,11 @@
                 <p>
                     Change color: 
                 </p>
-                <input class="changethemeknop" type="submit" name="changetheme" value="Change Theme" data-role="button" onclick="location.href = '#options'"/>
-                <input class="changethemeknop2" type="submit" name="changetheme" value="Change Theme" data-role="button"/>
+
+                <select id="selectColorTheme" name="selectColorTheme" data-native-menu="false">
+                    <option value="A">Grey</option>
+                    <option value="B">Yellow</option>
+                </select>
 
                 <input class="backknop" type="submit" name="back" value="Back" data-role="button" onclick="location.href = '#loggedIn'" />
             </div>
@@ -476,8 +520,6 @@
             </div>
             <!-- /footer -->
         </div>
-        <!-- test stuff -->
-        <div id="Div2"></div>
-        <!-- /test stuff -->
+
 	</body>
 </html>
