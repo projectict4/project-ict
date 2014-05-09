@@ -188,6 +188,44 @@
             });
 
 
+            //¨¨¨¨¨¨¨¨¨¨¨¨EXIT*********************
+            $('#exitknop').click(function () {
+                $.mobile.changePage('#loginPage');
+                location.reload();
+            });
+
+
+            //¨¨¨¨¨¨¨¨¨¨¨¨Options Back to logged in page*********************
+            $('#optionsback').click(function () {
+                $.mobile.changePage('#loggedIn');
+                location.reload();
+            });
+
+
+            $('#applyknop').click(function () {
+
+                var value = $('#ctk').val();
+
+
+                //$.mobile.changePage('#loggedIn');
+                location.reload();
+
+                if (value == 'A') {
+                    
+                    $(".changeThemePages").removeClass("ui-body-e"); //remove old theme
+                    $(".changeThemePages").addClass("ui-body-a"); //add new theme
+
+                }
+
+                if (value == 'B') {
+                    
+                    $(".changeThemePages").removeClass("ui-body-a"); //remove old theme
+                    $(".changeThemePages").addClass("ui-body-e"); //add new theme
+
+                }
+
+            });
+
             //************OPTIONS*************
             //$("#ctk").click(function () {
 
@@ -199,46 +237,22 @@
 
             //});
 
-            $("#selectColorTheme").change(function () {
+            //$("#ctk").change(function () {
 
-                if ($("#selectColorTheme").val() == 'A') {
+            //    if ($("#ctk").val() == 'A') {
                     
-                    $(".changeThemePages").removeClass("ui-page-e"); //remove old theme
-                    $(".changeThemePages").addClass("ui-page-a"); //add new theme
-                }
+            //        $(".changeThemePages").removeClass("ui-body-e"); //remove old theme
+            //        $(".changeThemePages").addClass("ui-body-a"); //add new theme
+            //    }
 
-                if ($("#selectColorTheme").val() == 'B') {
+            //    if ($("#ctk").val() == 'B') {
                     
-                    $(".changeThemePages").removeClass("ui-page-a"); //remove old theme
-                    $(".changeThemePages").addClass("ui-page-e"); //add new theme
+            //        $(".changeThemePages").removeClass("ui-body-a"); //remove old theme
+            //        $(".changeThemePages").addClass("ui-body-e"); //add new theme
 
-                }
+            //    }
 
-                //<select id="selectColorTheme" name="selectColorTheme" data-native-menu="false">
-                //    <option value="A">Grey</option>
-                //    <option value="B">Yellow</option>
-                //    <option value="C">Woopie</option>
-                //</select>
-
-
-                //alert("Yellow selected!");
-                //$(".changeThemePages").removeClass("ui-body-a"); //remove old theme
-
-                //$(".changeThemePages").addClass("ui-page-b"); //add new theme
-
-                //$(".changeThemePages").removeClass("data-theme", "a"); //remove old theme
-                //$(".changeThemePages").buttonMarkup({ theme: 'b' });
-                //$.mobile.refresh();
-                //$("#options").trigger("updatelayout");
-                //$(".changeThemePages").addClass("data-theme", "e"); //add new theme
-
-                //$(".changeThemePages").attr("data-theme", "b").trigger("mouseout")
-
-                //$('#options').click(function () {
-                //    location.reload();
-                //});
-
-            });
+            //});
 
         });
 
@@ -389,7 +403,7 @@
                     <br />
                     <br />
                     <form name="exit" method="get" action="hoofdpage.html">
-                        <input id="exitknop" type="submit" name="exit" value="Exit" onclick="location.href = '#loginPage'"/>
+                        <input id="exitknop" type="submit" name="exit" value="Exit"/>
                     </form>
             </div>
             <!-- footer -->
@@ -488,38 +502,34 @@
             </div>
             <!-- /footer -->
         </div>
-        <!-- test stuff -->
-        <div id="testText"></div>
-        <!-- /test stuff -->
 
-
-        <!-- page with the options-->
+        <!--OPTIONS PAGE********************************************************************-->
 
         <div data-role="page" id="options" class="changeThemePages">
             <!-- Header -->
             <div data-role="header">
                 <h1 class="titel">Phrase Dictionary</h1>
+
             </div>
             <!-- /header -->
             <div data-role="content">
+                <div>
                 <h1 class="titel">Options</h1>
-                <p>
-                    Change color: 
-                </p>
-
-                <select id="selectColorTheme" name="selectColorTheme" data-native-menu="false">
+                
+                    </div>
+                <select id="ctk" name="ctk" data-native-menu="false">
                     <option value="A">Grey</option>
                     <option value="B">Yellow</option>
                 </select>
-
-                <input class="backknop" type="submit" name="back" value="Back" data-role="button" onclick="location.href = '#loggedIn'" />
+                <input id="applyknop" class="backknop" type="submit" name="back" value="Apply" data-role="button" />
+                <input id="optionsback" class="backknop" type="submit" name="back" value="Back" data-role="button" />
             </div>
             <!-- footer -->
             <div data-role="footer">
                 <h4>&copy; 2014</h4>
             </div>
             <!-- /footer -->
-        </div>
 
+        </div>
 	</body>
 </html>
