@@ -228,63 +228,23 @@
             });
 
 
-            //¨¨¨¨¨¨¨¨¨¨¨¨Options Back to logged in page*********************
-            $('#optionsback').click(function () {
-                $.mobile.changePage('#loggedIn');
-                location.reload();
+            $("#grey").click(function () {
+
+                $(".changeThemePages").removeClass("ui-body-a ui-body-b ui-body-c ui-body-d ui-body-e ").addClass("ui-body-a").attr("data-theme", "a");
+
             });
 
+            $("#blue").click(function () {
 
-            $('#applyknop').click(function () {
+                $(".changeThemePages").removeClass("ui-body-a ui-body-b ui-body-c ui-body-d ui-body-e ").addClass("ui-body-b").attr("data-theme", "b");
 
-                var value = $('#ctk').val();
-
-
-                $.mobile.changePage('#loggedIn');
-                location.reload();
-
-                if (value == 'A') {
-                    
-                    $(".changeThemePages").removeClass("ui-body-e"); //remove old theme
-                    $(".changeThemePages").addClass("ui-body-a"); //add new theme
-
-                }
-
-                if (value == 'B') {
-                    
-                    $(".changeThemePages").removeClass("ui-body-a"); //remove old theme
-                    $(".changeThemePages").addClass("ui-body-e"); //add new theme
-
-                }
             });
 
-            //************OPTIONS*************
-            //$("#ctk").click(function () {
+            $("#yellow").click(function () {
 
-            //    //alert("Error");
+                $(".changeThemePages").removeClass("ui-body-a ui-body-b ui-body-c ui-body-d ui-body-e ").addClass("ui-body-e").attr("data-theme", "e");
 
-            //    $(".changeThemePages").removeClass("ui-body-a"); //remove old theme
-            //    $(".changeThemePages").addClass("ui-body-e"); //add new theme
-
-
-            //});
-
-            //$("#ctk").change(function () {
-
-            //    if ($("#ctk").val() == 'A') {
-                    
-            //        $(".changeThemePages").removeClass("ui-body-e"); //remove old theme
-            //        $(".changeThemePages").addClass("ui-body-a"); //add new theme
-            //    }
-
-            //    if ($("#ctk").val() == 'B') {
-                    
-            //        $(".changeThemePages").removeClass("ui-body-a"); //remove old theme
-            //        $(".changeThemePages").addClass("ui-body-e"); //add new theme
-
-            //    }
-
-            //});
+            });
 
         });
 
@@ -361,6 +321,12 @@
 		
 					Click here to sign up:
                 <input id="registerbtn" type="submit" name="registreer" data-role="button" value="Sign up" onclick="location.href = '#registrationPage'" />
+                <div data-role="controlgroup" data-type="horizontal" data-mini="true">
+                            <a data-role="button" id="niks">Choose Theme: </a>
+                            <a data-role="button" id="grey">Black</a>
+                            <a data-role="button" id="yellow">Yellow</a>
+                            <a data-role="button" id="blue">Grey/Blue</a>
+                        </div>	
 			</div>
 			<!-- /content -->	
 			<!-- test stuff -->
@@ -532,35 +498,6 @@
                 <h4>&copy; 2014</h4>
             </div>
             <!-- /footer -->
-        </div>
-
-        <!--OPTIONS PAGE********************************************************************-->
-
-        <div data-role="page" id="options" class="changeThemePages">
-            <!-- Header -->
-            <div data-role="header">
-                <h1 class="titel">Phrase Dictionary</h1>
-
-            </div>
-            <!-- /header -->
-            <div data-role="content">
-                <div>
-                <h1 class="titel">Options</h1>
-                
-                    </div>
-                <select id="ctk" name="ctk" data-native-menu="false">
-                    <option value="A">Grey</option>
-                    <option value="B">Yellow</option>
-                </select>
-                <input id="applyknop" class="backknop" type="submit" name="back" value="Apply" data-role="button" />
-                <input id="optionsback" class="backknop" type="submit" name="back" value="Back" data-role="button" />
-            </div>
-            <!-- footer -->
-            <div data-role="footer">
-                <h4>&copy; 2014</h4>
-            </div>
-            <!-- /footer -->
-
         </div>
 
         <!--*************search page****************-->
