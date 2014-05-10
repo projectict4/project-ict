@@ -191,6 +191,35 @@
 
             });
 
+            //**********************search page***************************
+
+            var searchInput;
+
+            $('#searchBtn').click(function () {
+                if (language1 == language2) {
+                    alert("select two different languages.");
+                }
+                else {
+                    searchInput = $('#searchValue').val();
+                    //alert(searchInput);
+
+                    $.ajax({
+                        url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/search.php',
+                        data: { searchInput: searchInput, language1: language1, language2: language2 },
+                        success: function (data) {
+                            $("#searchContent").empty();
+                            for (code in data) {
+                                $('#searchContent').append('<div class="feest" data-role="collapsible"><h4>' + data[code] + '</h4><p>' + code + '</p></div>');
+                                $('#searchContent').find("div").data('role', 'collapsible');
+                            }
+                        },
+                        error: function () { alert("Error"); },
+                        dataType: "jsonp",
+                        //type:"get"					
+                    });
+                }
+
+            });
 
             //¨¨¨¨¨¨¨¨¨¨¨¨EXIT*********************
             $('#exitknop').click(function () {
@@ -379,8 +408,8 @@
                     confirm Password
                     <input id="password2" name="password2" type="password" size="10" />
                 </p>
-                <input id="registrerbtn" type="submit" name="registreer" value="Register" onclick="location.href = '#loginPage'"/>
-                <input id="homeBtn" data-role="button" type="submit" name="home" value="Home" onclick="location.href = '#loginPage'" />
+                <input id="registrerbtn" data-icon="plus" type="submit" name="registreer" value="Register" onclick="location.href = '#loginPage'" />
+                <input id="homeBtn" data-role="button" data-icon="home" type="submit" name="home" value="Home" onclick="location.href = '#loginPage'" />
             </div>
             <!-- footer -->
             <div data-role="footer">
@@ -453,13 +482,12 @@
                         <input id="addtransbutn" name="addtransbtn" type="submit" />
                     </p>
                  
-                        <p id="translatetext">
-                            Search categories:
-                            <input id="phrasebox" name="phrase" type="text" size="38" />
+                        <p >
+                            <input data-role="button" data-icon="search" name="translate" type="submit" value="Search phrases" onclick="location.href = '#searchPage'" />
                         </p>
-                        <input class="catbtn" name="translate" value="Translate" />
+                
                         <br />
-                <input class="catbtn" data-role="button" type="submit" name="1" value="Traveling" />
+                <input class="catbtn"  data-role="button" type="submit" name="1" value="Traveling" />
                         <br />
                 <input class="catbtn" data-role="button" type="submit" name="2" value="Directions" />
                         <br />
@@ -477,7 +505,7 @@
                     <br />
                     <br />
 
-                <input class="backknop" type="submit" name="back" value="Back" data-role="button" onclick="location.href = '#loggedIn'" />
+                <input class="backknop" data-icon="back" type="submit" name="back" value="Back" data-role="button" onclick="location.href = '#loggedIn'" />
             </div>
             <!-- footer -->
             <div data-role="footer">
@@ -496,12 +524,8 @@
             <!-- /header -->
             <div data-role="content" >
                 <div id="sentencesContent">
-                    <div data-role="collapsible">
-                        <h4>Heading</h4>
-                        <p>I'm the collapsible content. By default I'm closed, but you can click the header to open me.</p>
-                    </div>
                 </div>
-                <input class="backknop" type="submit" name="back" value="Back" data-role="button" onclick="location.href = '#categories'" />
+                <input class="backknop" data-icon="back" type="submit" name="back" value="Back" data-role="button" onclick="location.href = '#categories'" />
             </div>
             <!-- footer -->
             <div data-role="footer">
@@ -538,5 +562,29 @@
             <!-- /footer -->
 
         </div>
+
+        <!--*************search page****************-->
+
+        <div data-role="page" id="searchPage" class="changeThemePages">
+            <!-- Header -->
+            <div data-role="header">
+                <h1 class="titel">Translations</h1>
+            </div>
+            <!-- /header -->
+            <div data-role="content">
+                <input  id="searchValue" type="search" />
+                <input id="searchBtn"type="submit" name="searchBtn" value="search" data-role="button" data-icon="search" />
+                <div id="searchContent">
+                    
+                </div>
+                <input class="backknop" data-icon="back" type="submit" name="back" value="Back" data-role="button" onclick="location.href = '#categories'" />
+            </div>
+            <!-- footer -->
+            <div data-role="footer">
+                <h4>&copy; 2014</h4>
+            </div>
+            <!-- /footer -->
+        </div>
+
 	</body>
 </html>
