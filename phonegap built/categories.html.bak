@@ -1,81 +1,130 @@
 <html>
-	<head>
-		<title></title>
+    <head>
+
+        <title></title>
         <link href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" type="text/css" rel="stylesheet" media="screen" />
         <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-		  <script type="text/javascript">
+        <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+        
+
+        <script type="text/javascript">
             $(document).ready(function () {
-			 $('#addtransbtn').click(function () {
-				var addedtranslation = $('#addtransbox').val();
+			
+				var language1 = 'phrase english';
+				var language2 = 'phrase finnish';
+				var cat = 1;
 				
+				$('#addtransbtn').click(function () {
+				alert();
+				//cat = $(this).attr('1');
+				alert(cat);
+				var addedtranslation = $('#addedtranslation').val(); 
+				cat = 2;
+				 $.ajax({
+                        url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/addtrans.php',
+                        data: {addedtranslation: addedtranslation, cat: cat},
+                        success: function (data) { alert(data.text); },
+                        error: function () { alert('Error'); },
+                        dataType: "jsonp",
+                        //type:"get"
+                    });
 				$.ajax({
-                        url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/registration.php',
-						data: {addedtranslation: addedtranslation},
-						success: function (data) { $('#testText').text(data.text); },
+                        url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/addconnection.php',
+                        data: {cat: cat},
+                        success: function (data) { alert(data.text); },
+                        error: function () { alert('Error'); },
+                        dataType: "jsonp",
+                        //type:"get"
+                    });
+				});
+						
+										
+                $('#travelingknop').click(function () {
+
+                    $.ajax({
+                        url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/get-translation-info.php',
+                        success: function (data) { alert(data.text); },
                         error: function () { alert("Error"); },
                         dataType: "jsonp",
                         //type:"get"
                     });
                 });
-	</head>
-	<body class="alles">
+
+                $(function () {
+                    $("#homeBtn").click(function () {
+                        $.mobile.changePage("index.html", { allowSamePageTransition: true, reloadPage: false, changeHash: true, transition: "slide" });
+                    });
+                });
+				
+				
+            });
+
+        </Script>
+
+
+
+
+            </head>
+    <body class="alles">
         <div class="hoofdpagebox">
-		<h1 class="titel">Categories</h1>
+            <h1 class="titel">Categories</h1>
 		
-		<select id="startlanguage"name="startlanguage">
-			<option value="A">English</option>
-			<option value="B">Finnish</option>
-		</select>
+            <select id="startlanguage"name="startlanguage">
+				
+					<option id="startA" value="startA">English</option>
+					<option id="startB" value="startB">Dutch</option>
+				
+            </select>
 		
-		<select id="resultlanguage"name="resultlanguage">
-			<option value="A">Finnish</option>
-			<option value="B">English</option>
-		</select>
+            <select id="resultlanguage"name="resultlanguage">
+			
+					<option id="resA" value="resA">Finnish</option>	
+					
+            </select>
+			
+			 <p id="addtranslate">
+                        
+						Add your own translation here.
+                        <input id="addedtranslation" name="addedtranslation" type="text" size="50" />
+                        
+						Select your language
+                        <select id="translanguage" name="translanguage">
+                            <option value="A">Finnish</option>
+                            <option value="B">English</option>
+                        </select>
+
+                        <input id="addtransbtn" name="addtransbtn" type="submit" size="60" />
+                    </p>
+			
+            <form name="translate" method="get" action="translate.php">
+                <p id="translatetext">
+                    Type phrase to translate here:
+                    <input id="phrasebox"name="phrase" type="text" size="38" />
+                </p>
+               <input class="catbtn" data-role="button" type="submit" name="1" value="Traveling" />
+                        <br />
+                <input class="catbtn" data-role="button" type="submit" name="2" value="Directions" />
+                        <br />
+                <input class="catbtn" data-role="button" type="submit" name="3" value="Ordering and shopping" />
+                        <br />
+                <input class="catbtn" data-role="button" type="submit" name="4" value="Thanking and apologizinging" />
+                        <br />
+                <input class="catbtn" data-role="button" type="submit" name="5" value="Dates and times" />
+                        <br />
+                <input class="catbtn" data-role="button" type="submit" name="6" value="Numerals" />
+            </form>
 		
-		<!--vertalingen toevoegen-->
-		<p id="addtranslate">
-		Add your own translation here.
-		<input id="addtransbox" name="addtransbox" type="text" size="38" />
-		Select your language
-		<select id="translanguage" name="translanguage">
-			<option value="A">Finnish</option>
-			<option value="B">English</option>
-		</select>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
 		
-		<input id="addtransbutn" name="addtransbtn" type="submit" size="10"/>
-		</p>
-		
-		<form name="translate" method="get" action="translate.php">
-        <p id="translatetext">
-		Search categories:
-		<input id="phrasebox"name="phrase" type="text" size="38" />
-		</p>
-			<input class="categorieknoppen"type="submit" name="translate" value="Translate" />
-			<br />
-			<input class="categorieknoppen"type="submit" name="traveling" value="Traveling" />
-			<br />
-			<input class="categorieknoppen"type="submit" name="directions" value="Directions" />
-			<br />
-			<input class="categorieknoppen"type="submit" name="orderingandshopping" value="Ordering and shopping" />
-			<br />
-			<input class="categorieknoppen"type="submit" name="thankingandapologicing" value="Thanking and apologizinging" />
-			<br />
-			<input class="categorieknoppen"type="submit" name="datesandtimes" value="Dates and times" />
-			<br />
-			<input class="categorieknoppen"type="submit" name="numerals" value="Numerals" />
-		</form>
-		
-		<br />
-		<br />
-		<br />
-		<br />
-		<br />
-		
-		<form  class="back"name="back" method="get" action="ingelogd.html">
-			<input class="backknop" type="submit" name="back" value="Back" />
-		</form>
+            <form  class="back"name="back" method="get" action="ingelogd.html">
+                <input class="backknop" type="submit" name="back" value="Back" />
+            </form>
 		
         </div>
-	</body>
+    </body>
 </html>

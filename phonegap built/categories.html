@@ -10,7 +10,37 @@
 
         <script type="text/javascript">
             $(document).ready(function () {
-
+			
+				var language1 = 'phrase english';
+				var language2 = 'phrase finnish';
+				var cat = 1;
+				
+				$('#addtransbtn').click(function () {
+				alert();
+				//cat = $(this).attr('1');
+				alert(cat);
+				var addedtranslation = $('#addedtranslation').val(); 
+				cat = 2;
+				 $.ajax({
+                        url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/addtrans.php',
+                        data: {addedtranslation: addedtranslation, cat: cat},
+                        success: function (data) { alert(data.text); },
+                        error: function () { alert('Error'); },
+                        dataType: "jsonp",
+                        //type:"get"
+                    });
+					//aan phrase connection toevoegen
+				$.ajax({
+                        url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/addconnection.php',
+                        data: {cat: cat},
+                        success: function (data) { alert(data.text); },
+                        error: function () { alert('Error'); },
+                        dataType: "jsonp",
+                        //type:"get"
+                    });
+				});
+						
+										
                 $('#travelingknop').click(function () {
 
                     $.ajax({
@@ -27,8 +57,10 @@
                         $.mobile.changePage("index.html", { allowSamePageTransition: true, reloadPage: false, changeHash: true, transition: "slide" });
                     });
                 });
-
+				
+				
             });
+
         </Script>
 
 
@@ -40,33 +72,48 @@
             <h1 class="titel">Categories</h1>
 		
             <select id="startlanguage"name="startlanguage">
-                <option value="A">English</option>
-                <option value="B">Finnish</option>
+				
+					<option id="startA" value="startA">English</option>
+					<option id="startB" value="startB">Dutch</option>
+				
             </select>
 		
             <select id="resultlanguage"name="resultlanguage">
-                <option value="A">Finnish</option>
-                <option value="B">English</option>
+			
+					<option id="resA" value="resA">Finnish</option>	
+					
             </select>
-		
+			
+			 <p id="addtranslate">
+                        
+						Add your own translation here.
+                        <input id="addedtranslation" name="addedtranslation" type="text" size="50" />
+                        
+						Select your language
+                        <select id="translanguage" name="translanguage">
+                            <option value="A">Finnish</option>
+                            <option value="B">English</option>
+                        </select>
+
+                        <input id="addtransbtn" name="addtransbtn" type="submit" size="60" />
+                    </p>
+			
             <form name="translate" method="get" action="translate.php">
                 <p id="translatetext">
-                    Typ phrase to translate here:
+                    Type phrase to translate here:
                     <input id="phrasebox"name="phrase" type="text" size="38" />
                 </p>
-                <input class="categorieknoppen"type="submit" name="translate" value="Translate" />
-                <br />
-                <input id = "travelingknop"type="submit" name="traveling" value="Traveling" />
-                <br />
-                <input class="categorieknoppen"type="submit" name="directions" value="Directions" />
-                <br />
-                <input class="categorieknoppen"type="submit" name="orderingandshopping" value="Ordering and shopping" />
-                <br />
-                <input class="categorieknoppen"type="submit" name="thankingandapologicing" value="Thanking and apologicing" />
-                <br />
-                <input class="categorieknoppen"type="submit" name="datesandtimes" value="Dates and times" />
-                <br />
-                <input class="categorieknoppen"type="submit" name="numerals" value="Numerals" />
+               <input class="catbtn" data-role="button" type="submit" name="1" value="Traveling" />
+                        <br />
+                <input class="catbtn" data-role="button" type="submit" name="2" value="Directions" />
+                        <br />
+                <input class="catbtn" data-role="button" type="submit" name="3" value="Ordering and shopping" />
+                        <br />
+                <input class="catbtn" data-role="button" type="submit" name="4" value="Thanking and apologizinging" />
+                        <br />
+                <input class="catbtn" data-role="button" type="submit" name="5" value="Dates and times" />
+                        <br />
+                <input class="catbtn" data-role="button" type="submit" name="6" value="Numerals" />
             </form>
 		
             <br />
