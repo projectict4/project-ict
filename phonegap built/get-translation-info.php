@@ -15,11 +15,12 @@
 		$language1 = $_GET['language1'];
 		$language2 = $_GET['language2'];
 		$catId;
+		$catId2;
 
 
 		// Collects phrases in table phrase english 
-		$data = mysql_query("SELECT phrase FROM `phrase english` WHERE id='1'");
-		$info = mysql_result($data,0,'phrase');
+		//$data = mysql_query("SELECT phrase FROM `phrase english` WHERE id='1'");
+		//$info = mysql_result($data,0,'phrase');
 		
 		if($language1 == 'phrase english')
 		{
@@ -34,15 +35,55 @@
 			$catId = 'id dutch';
 		}
 
-		$data2 = mysql_query("SELECT phrase FROM `$language1` WHERE id = ANY (SELECT `$catId` FROM `phrase connections` WHERE cat='$cat')");
-		$total_rows = mysql_num_rows($data2);
+		if($language2 == 'phrase english')
+		{
+			$catId2 = 'id eng';
+		}
+		else if($language2 == 'phrase finnish')
+		{
+			$catId2 = 'id fin';
+		}
+		else
+		{
+			$catId2 = 'id dutch';
+		}
+
+		//$data = mysql_query("SELECT phrase FROM `$language1` WHERE id = ANY (SELECT `$catId` FROM `phrase connections` WHERE cat='$cat')");
+		//$total_rows = mysql_num_rows($data);
 		//$info2 = mysql_result($data2,0,'phrase');
+
+		$data = mysql_query("SELECT
+							   a.phrase,
+							   b.phrase
+							FROM
+							   `phrase connections` pc
+							INNER JOIN
+							   `$language1` AS a
+							ON
+							   pc.`$catId` = a.id
+							INNER JOIN
+							   `$language2` AS b
+							ON
+							   pc.`$catId2` = b.id
+							WHERE
+							   pc.cat = $cat;");
+
+		$total_rows = mysql_num_rows($data);
+
+		/*$array_result = array();
+		for ($i = 1; $i <= $total_rows; $i++) {
+			$j = $i - 1;
+			$array_result["key$i"] = mysql_result($data,$j,'phrase');
+		}*/
 
 		$array_result = array();
 		for ($i = 1; $i <= $total_rows; $i++) {
 			$j = $i - 1;
-			$array_result["key$i"] = mysql_result($data2,$j,'phrase');
+			$key = utf8_encode(mysql_result($data,$j,1));
+			$array_result[$key] = mysql_result($data,$j,0);
+
 		}
+
 		//echo $array_result[1];
 
 		//$info3 = mysql_fetch_array($data2);
