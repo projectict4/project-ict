@@ -45,6 +45,7 @@
                         }
                         else {
                             alert(data.text);
+                            //alert("Invalid username/password combination.\nPlease try again or create an account.")
                         }
                     },
                     error: function () { alert("Error"); },
@@ -141,7 +142,7 @@
 
             $('.catbtn').click(function () {
                 if (language1 == language2) {
-                    alert("select two different languages.");
+                    alert("Select two different languages.");
                 }
                 else
                 {
@@ -197,7 +198,7 @@
 
             $('#searchBtn').click(function () {
                 if (language1 == language2) {
-                    alert("select two different languages.");
+                    alert("Select two different languages.");
                 }
                 else {
                     searchInput = $('#searchValue').val();
@@ -306,22 +307,24 @@
 			</div>
 			<!-- /header -->
 			<!-- Content    -->
-			<div data-role="content">			
+			<div data-role="content">	
+                		
 					<p class="logintext">
 						Login
 						<input id="logintxt"name="login" type="text" size="10" />
 					</p>
-					
+                		
 					<p class="logintext">
 						Password
 						<input id="pastxt"name="paswoord" type="password" size="10" />
 					</p>
-			<br />
+			        <br />
 						<input id="loginbtn"type="submit" name="Login" value="Login" />	
-		
+		            <br />
 					Click here to sign up:
-                <input id="registerbtn" type="submit" name="registreer" data-role="button" value="Sign up" onclick="location.href = '#registrationPage'" />
-                <div data-role="controlgroup" data-type="horizontal" data-mini="true">
+                    <input id="registerbtn" type="submit" name="registreer" data-role="button" value="Sign up" onclick="location.href = '#registrationPage'" />
+                    <br />
+                    <div data-role="controlgroup" data-type="horizontal" data-mini="true">
                             <a data-role="button" id="niks">Choose Theme: </a>
                             <a data-role="button" id="grey">Black</a>
                             <a data-role="button" id="yellow">Yellow</a>
@@ -349,11 +352,13 @@
         <div data-role="page" id="registrationPage" class="changeThemePages">
             <!-- Header -->
             <div data-role="header">
-                <h1 class="titel">Registration Form</h1>
+                <h1 class="titel">Phrase Dictionary</h1>
 
             </div>
             <!-- /header -->
             <div data-role="content">
+                <h3>Registration Form</h3>
+                <br />
                 <p class="logintext">
                     First Name
                     <input id="firstname" name="firstname" type="text" size="10" />
@@ -363,7 +368,7 @@
                     <input id="surename" name="surename" type="text" size="10" />
                 </p>
                 <p class="logintext">
-                    username
+                    Username
                     <input id="username" name="username" type="text" size="10" />
                 </p>
                 <p class="logintext">
@@ -371,10 +376,12 @@
                     <input id="password" name="password" type="password" size="10" />
                 </p>
                 <p class="logintext">
-                    confirm Password
+                    Confirm Password
                     <input id="password2" name="password2" type="password" size="10" />
                 </p>
+                <br />
                 <input id="registrerbtn" data-icon="plus" type="submit" name="registreer" value="Register" onclick="location.href = '#loginPage'" />
+                <br />
                 <input id="homeBtn" data-role="button" data-icon="home" type="submit" name="home" value="Home" onclick="location.href = '#loginPage'" />
             </div>
             <!-- footer -->
@@ -394,11 +401,6 @@
             <!-- /header -->
             <div data-role="content">
                 <input id="categorieknop" type="submit" name="categorie" value="Categories" data-role="button" onclick="location.href = '#categories'" />
-                    <br />
-                    <br />
-                    <form name="options" method="get" action="options.html">
-                        <input id="optionknop" type="submit" name="options" value="Options" onclick="location.href = '#options'" />
-                    </form>
                     <br />
                     <br />
                     <form name="exit" method="get" action="hoofdpage.html">
@@ -421,7 +423,7 @@
             </div>
             <!-- /header -->
             <div data-role="content">
-                    <h1 class="titel">Categories</h1>
+                    <h4 class="titel">Select languages: </h4>
 
                 <select id="startlanguage" name="startlanguage" data-native-menu="false">
                     <option value="english1">English</option>
@@ -434,25 +436,8 @@
                     <option value="english2">English</option>
                     <option value="dutch2">Dutch</option>
                 </select>
-
-                    <!--vertalingen toevoegen-->
-                    <p id="addtranslate">
-                        Add your own translation here.
-                        <input id="addtransbox" name="addtransbox" type="text" size="38" />
-                        Select your language
-                        <select id="translanguage" name="translanguage">
-                            <option value="A">Finnish</option>
-                            <option value="B">English</option>
-                        </select>
-
-                        <input id="addtransbutn" name="addtransbtn" type="submit" />
-                    </p>
-                 
-                        <p >
-                            <input data-role="button" data-icon="search" name="translate" type="submit" value="Search phrases" onclick="location.href = '#searchPage'" />
-                        </p>
-                
-                        <br />
+                <br />
+                <h4>Select your category: </h4>
                 <input class="catbtn"  data-role="button" type="submit" name="1" value="Traveling" />
                         <br />
                 <input class="catbtn" data-role="button" type="submit" name="2" value="Directions" />
@@ -464,10 +449,28 @@
                 <input class="catbtn" data-role="button" type="submit" name="5" value="Dates and times" />
                         <br />
                 <input class="catbtn" data-role="button" type="submit" name="6" value="Numerals" />
+                        <br />
+                
+                <h4>Search through each category: </h4>
+                <p >
+                    <input data-role="button" data-icon="search" name="translate" type="submit" value="Search Phrases" onclick="location.href = '#searchPage'" />
+                </p>
+                    <br />
 
-                    <br />
-                    <br />
-                    <br />
+                <h4>Add your own translation: </h4>
+                <!--vertalingen toevoegen-->
+                    <p id="addtranslate">
+                        Add your own translation here.
+                        <input id="addtransbox" name="addtransbox" type="text" size="38" />
+                        Select your language
+                        <select id="translanguage" name="translanguage">
+                            <option value="A">Finnish</option>
+                            <option value="B">English</option>
+                        </select>
+
+                        <input id="addtransbutn" name="addtransbtn" type="submit" value="Add Translation" />
+                    </p>
+
                     <br />
                     <br />
 
@@ -485,10 +488,12 @@
         <div data-role="page" id="sentences" class="changeThemePages">
             <!-- Header -->
             <div data-role="header">
-                <h1 class="titel">Translations</h1>
+                <h1 class="titel">Phrase Dictionary</h1>
             </div>
             <!-- /header -->
             <div data-role="content" >
+                <h3 id="catTitle">Translations</h3>
+                <br />
                 <div id="sentencesContent">
                 </div>
                 <input class="backknop" data-icon="back" type="submit" name="back" value="Back" data-role="button" onclick="location.href = '#categories'" />
@@ -505,15 +510,16 @@
         <div data-role="page" id="searchPage" class="changeThemePages">
             <!-- Header -->
             <div data-role="header">
-                <h1 class="titel">Translations</h1>
+                <h1 class="titel">Phrase Dictionary</h1>
             </div>
             <!-- /header -->
             <div data-role="content">
+                <h4>Search function: </h4>
                 <input  id="searchValue" type="search" />
-                <input id="searchBtn"type="submit" name="searchBtn" value="search" data-role="button" data-icon="search" />
+                <input id="searchBtn"type="submit" name="searchBtn" value="Search" data-role="button" data-icon="search" />
                 <div id="searchContent">
-                    
                 </div>
+                <br />
                 <input class="backknop" data-icon="back" type="submit" name="back" value="Back" data-role="button" onclick="location.href = '#categories'" />
             </div>
             <!-- footer -->
