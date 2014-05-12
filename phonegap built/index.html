@@ -222,30 +222,45 @@
 
             });
 			
-			$('#addtransbtn').click(function () {
-				var addedtranslation = $('#addedtranslation').val(); 
-				 //cat = $(this).attr("name");
-				 //test cat
-					cat = 3;
-				 $.ajax({
-                        url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/addtrans.php',
-                        data: { addedtranslation: addedtranslation, cat : cat},
-                        success: function (data) {alert(data.text); },
-                        error: function () { alert("Error"); },
-                        dataType: "jsonp",
-                        //type:"get"
-                    });
-				$.ajax({
-                        url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/addconnection.php',
-                        data: {cat: cat},
-                        success: function (data) { alert(data.text); },
-                        error: function () { alert('Error'); },
-                        dataType: "jsonp",
-                        //type:"get"
-                    });
-				});
+
+            //********************add translation*********************
+
+			//$('#addtransbtn').click(function () {
+			//	var addedtranslation = $('#addedtranslation').val(); 
+			//	 //cat = $(this).attr("name");
+			//	 //test cat
+			//		cat = 3;
+			//	 $.ajax({
+            //            url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/addtrans.php',
+            //            data: { addedtranslation: addedtranslation, cat : cat},
+            //            success: function (data) {alert(data.text); },
+            //            error: function () { alert("Error"); },
+            //            dataType: "jsonp",
+            //            //type:"get"
+            //        });
+			//	$.ajax({
+            //            url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/addconnection.php',
+            //            data: {cat: cat},
+            //            success: function (data) { alert(data.text); },
+            //            error: function () { alert('Error'); },
+            //            dataType: "jsonp",
+            //            //type:"get"
+            //        });
+			//	});
 			
-			
+            $('#addtransbtn').click(function () {
+                var addPhrase1 = $('#addPhrase1').val();
+                var addPhrase2 = $('#addPhrase2').val();
+                	 $.ajax({
+                            url: 'http://www.corsproxy.com/ec2-54-229-159-242.eu-west-1.compute.amazonaws.com/addtranslation.php',
+                            data: { cat: cat, language1: language1, language2: language2, addPhrase1: addPhrase1, addPhrase2: addPhrase2 },
+                            success: function (data) {alert(data.text); },
+                            error: function () { alert("Error"); },
+                            dataType: "jsonp",
+                            //type:"get"
+                        });
+            });
+
             //¨¨¨¨¨¨¨¨¨¨¨¨EXIT*********************
             $('#exitknop').click(function () {
                 $.mobile.changePage('#loginPage');
@@ -281,46 +296,7 @@
 	<body>
 
 	<div id="fb-root"></div>
-	<script>
-	/*
-	//<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
-	//FB SDK asynchroon laden 
-	(function(d){
-	alert();
-   var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement('script'); js.id = id; js.async = true;
-   js.src = "https://connect.facebook.net/en_US/all.js#xfbml=1&status=0";
-   ref.parentNode.insertBefore(js, ref);
-  }(document));
-  
-	window.fbAsyncInit = function(){
-	FB.init({
-	appId      : '213324475531587',
-    status     : true, // check login status
-    cookie     : true, // enable cookies to allow the server to access the session
-    xfbml      : true  // parse XFBML
-		});
-	FB.Event.subscribe('auth.authResponseChange', function(response) {
-	alert('subscribe');
-	if (response.status == 'connected'){
-	alert('connected');
-		testAPI();
-			} else if (response.status === 'not_authorized') {
-			alert('not authorized');
-				FB.login();
-			} else {
-			alert('else');
-				FB.login();
-			}
-		});
-	};
-	
-	FB.logout(function(response) {
-        // Person is now logged out
-    });
-	*/
-	</script>
+
 		
 		<!-- Start of first page I -->
 		<div data-role="page" id="loginPage" class="changeThemePages">
@@ -479,21 +455,6 @@
                 <p >
                     <input data-role="button" data-icon="search" name="translate" type="submit" value="Search Phrases" onclick="location.href = '#searchPage'" />
                 </p>
-                    <br />
-
-                <h4>Add your own translation: </h4>
-                <!--vertalingen toevoegen-->
-                    <p id="addtranslate">
-                        Add your own translation here.
-                        <input id="addedtranslation" name="addtransbox" type="text" size="38" />
-                        Select your language
-                        <select id="translanguage" name="translanguage">
-                            <option value="A">Finnish</option>
-                            <option value="B">English</option>
-                        </select>
-
-                        <input id="addtransbtn" name="addtransbtn" type="submit" value="Add Translation" />
-                    </p>
 
                     <br />
                     <br />
@@ -517,7 +478,17 @@
             <!-- /header -->
             <div data-role="content" >
                 <h3 id="catTitle">Translations</h3>
-                <br />
+                <div data-role="collapsible">
+                    <h4>Add a phrase</h4>
+                    <p id="addtranslation">
+                        first phrase:
+                        <input id="addPhrase1" name="addtransbox" type="text" size="38" />
+                        second phrase:
+                        <input id="addPhrase2" name="addtransbox" type="text" size="38" />
+
+                        <input id="addtransbtn" name="addtransbtn" type="submit" value="Add Translation" />
+                    </p>
+                </div>
                 <div id="sentencesContent">
                 </div>
                 <input class="backknop" data-icon="back" type="submit" name="back" value="Back" data-role="button" onclick="location.href = '#categories'" />
