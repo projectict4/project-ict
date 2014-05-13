@@ -16,6 +16,9 @@
 		$phrase1 = $_GET['addPhrase1'];
 		$phrase2 = $_GET['addPhrase2'];
 
+		$phrase1Decode = utf8_decode($phrase1);
+		$phrase2Decode = utf8_decode($phrase2);
+
 		$catId;
 		$catId2;
 
@@ -23,8 +26,8 @@
 		//$query_run = mysql_query($query);
 					
 					
-		$query1 = mysql_query("INSERT INTO `$language1` VALUES ('','".mysql_real_escape_string($phrase1)." ','".mysql_real_escape_string($cat)."')");
-		$query2 = mysql_query("INSERT INTO `$language2` VALUES ('','".mysql_real_escape_string($phrase2)." ','".mysql_real_escape_string($cat)."')");
+		$query1 = mysql_query("INSERT INTO `$language1` VALUES ('','".mysql_real_escape_string($phrase1Decode)." ','".mysql_real_escape_string($cat)."')");
+		$query2 = mysql_query("INSERT INTO `$language2` VALUES ('','".mysql_real_escape_string($phrase2Decode)." ','".mysql_real_escape_string($cat)."')");
 
 		$query3 = mysql_query("SELECT max(id) FROM `$language1`");
 		$query4 = mysql_query("SELECT max(id) FROM `$language2`");
